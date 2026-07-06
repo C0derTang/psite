@@ -1,44 +1,32 @@
-# Christopher Tang - Portfolio Website
+# Christopher Tang — The Graph
 
-A modern, responsive portfolio website showcasing Christopher Tang's academic achievements, research experience, robotics work, and leadership activities.
+Personal site rendered as an Obsidian-style interactive knowledge graph. Every node is a chapter — education, research, robotics, software, teaching, storytelling — connected by the threads between them.
 
-## About Christopher Tang
+**Live:** [c0dertang.github.io](https://c0dertang.github.io/)
 
-- **Education**: Stockdale High School, Class of 2026 (4.0 GPA)
-- **Academic Achievements**: 1550 SAT, 1520 PSAT, Multiple AP 5s
-- **Research**: Engineering Intern at CSU Bakersfield working on Steam Hydrogasification
-- **Robotics**: Co-Team Lead at Liberty Robotics with Worlds qualification
-- **Leadership**: President of Math Honor Society, Founder of Bakersfield Robotics
-- **Skills**: Python, C++, Web Development (FERN Stack), TailwindCSS, Mandarin (Fluent)
+## How it works
 
-## Features
+- A d3-force simulation lays out the graph; nodes are draggable (fling them), the canvas pans and zooms.
+- Clicking a node opens a detail panel and flies the camera to it. Selection syncs with the URL hash, so every node is deep-linkable (e.g. [`#vex-worlds`](https://c0dertang.github.io/#vex-worlds)) and the back button travels the graph.
+- Honors `prefers-reduced-motion`.
 
-- Interactive network animation background
-- Dynamic role switching with typing animation
-- Project showcase with image carousels
-- Experience timeline
-- Responsive design with modern UI
-- Contact information and social links
+## Stack
 
-## Technologies Used
+- React 19 + Vite 7
+- d3-force / d3-zoom for the graph
+- Tailwind CSS 4
 
-- React 18
-- Vite
-- Tailwind CSS
-- React Router
-- Konva.js (for animations)
-- Framer Motion
+## Development
 
-## Getting Started
+```sh
+npm install
+npm run dev      # dev server
+npm run build    # production build to dist/
+npm run preview  # serve the production build
+```
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start development server: `npm run dev`
-4. Build for production: `npm run build`
+Graph content lives in `src/constants/index.js` (profile, experience, projects) and is assembled into nodes/edges in `src/graph/data.js`.
 
-## Contact
+## Deployment
 
-- Email: tangchristopher111@gmail.com
-- Phone: 661-677-2028
-- Website: c0dertang.github.io
-- Location: Bakersfield, CA
+Pushing to `main` on [C0derTang.github.io](https://github.com/C0derTang/C0derTang.github.io) runs the GitHub Actions workflow in `.github/workflows/deploy.yml`, which builds the site and publishes `dist/` to the `gh-pages` branch. GitHub Pages serves that branch at [c0dertang.github.io](https://c0dertang.github.io/).
